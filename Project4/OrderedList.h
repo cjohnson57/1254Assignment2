@@ -192,8 +192,29 @@ class OrderedList
 			*f << newRoster;
 		}
 
-		void traverseDisplayFunctions(void (T::*displayFunction)() const)
+		void traverseDisplayFunctions(void (T::*displayFunction)() const, string(T::*toStringFunction)() const)
 		{
+			bool finishedsorting = false;
+			T temp;
+			while (!finishedsorting)
+			{
+				finishedsorting = true;
+				for (int i = 0; i < length - 1; i++)
+				{
+					string a = (nodes[i].*toStringFunction)();
+					string b = (nodes[i + 1].*toStringFunction)();
+					int comparer = a.compare(b);
+					if (comparer > 0)
+					{
+						finishedsorting = false;
+
+						temp = nodes[i];
+						nodes[i] = nodes[i + 1];
+						nodes[i + 1] = temp;
+					}
+				}
+			}
+
 			for (int i = 0; i < length; i++)
 			{
 				(nodes[i].*displayFunction)();

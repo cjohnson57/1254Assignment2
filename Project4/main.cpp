@@ -191,14 +191,14 @@ int main(int argc, char** argv)
 		if (choice == 7)
 		{
 			cout << "-----Begin List-----" << endl;
-			l->traverseDisplayFunctions(&Student::displayIfPass);
+			l->traverseDisplayFunctions(&Student::displayIfPass, &Student::toString);
 			cout << "-----End List-----" << endl;
 		}
 
 		if (choice == 8)
 		{
 			cout << "-----Begin List-----" << endl;
-			l->traverseDisplayFunctions(&Student::displayIfFail);
+			l->traverseDisplayFunctions(&Student::displayIfFail, &Student::toString);
 			cout << "-----End List-----" << endl;
 		}
 
@@ -248,7 +248,7 @@ int main(int argc, char** argv)
 					break;
 				}
 			}
-			l->traverseDisplayFunctions(foo);
+			l->traverseDisplayFunctions(foo, &Student::toString);
 			cout << "-----End List-----" << endl;
 		}
 
